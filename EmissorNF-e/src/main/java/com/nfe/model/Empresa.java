@@ -14,54 +14,65 @@ import javax.persistence.Id;
 @Entity
 public class Empresa implements Serializable{
 
-    //chave primaria
+
     @Id
-    private String nr_cnpj;
+    private Long id;
     
-    private String ds_nm_fantasia;
+    private String nrCnpj;
+    
+    private String nmFantasia;
     
 
-    private Timestamp dt_cadastro;
+    private Timestamp dtCadastro;
 
     public Empresa() {
     }
 
-    public Empresa(String nr_cnpj, String ds_nm_fantasia, Timestamp dt_cadastro) {
-        this.nr_cnpj = nr_cnpj;
-        this.ds_nm_fantasia = ds_nm_fantasia;
-        this.dt_cadastro = dt_cadastro;
+    public Empresa(Long id, String nrCnpj, String nmFantasia, Timestamp dtCadastro) {
+        this.id = id;
+        this.nrCnpj = nrCnpj;
+        this.nmFantasia = nmFantasia;
+        this.dtCadastro = dtCadastro;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNrCnpj() {
+        return nrCnpj;
+    }
+
+    public void setNrCnpj(String nrCnpj) {
+        this.nrCnpj = nrCnpj;
+    }
+
+    public String getNmFantasia() {
+        return nmFantasia;
+    }
+
+    public void setNmFantasia(String nmFantasia) {
+        this.nmFantasia = nmFantasia;
+    }
+
+    public Timestamp getDtCadastro() {
+        return dtCadastro;
+    }
+
+    public void setDtCadastro(Timestamp dtCadastro) {
+        this.dtCadastro = dtCadastro;
     }
     
     
-
-    public String getNr_cnpj() {
-        return nr_cnpj;
-    }
-
-    public void setNr_cnpj(String nr_cnpj) {
-        this.nr_cnpj = nr_cnpj;
-    }
-
-    public String getDs_nm_fantasia() {
-        return ds_nm_fantasia;
-    }
-
-    public void setDs_nm_fantasia(String ds_nm_fantasia) {
-        this.ds_nm_fantasia = ds_nm_fantasia;
-    }
-
-    public Timestamp getDt_cadastro() {
-        return dt_cadastro;
-    }
-
-    public void setDt_cadastro(Timestamp dt_cadastro) {
-        this.dt_cadastro = dt_cadastro;
-    }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.nr_cnpj);
+        int hash = 3;
+        hash = 73 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -74,7 +85,7 @@ public class Empresa implements Serializable{
             return false;
         }
         final Empresa other = (Empresa) obj;
-        if (!Objects.equals(this.nr_cnpj, other.nr_cnpj)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
@@ -82,9 +93,8 @@ public class Empresa implements Serializable{
 
     @Override
     public String toString() {
-        return "Empresa{" + "nr_cnpj=" + nr_cnpj + ", ds_nm_fantasia=" + ds_nm_fantasia + ", dt_cadastro=" + dt_cadastro + '}';
+        return "Empresa{" + "id=" + id + ", nrCnpj=" + nrCnpj + ", nmFantasia=" + nmFantasia + ", dtCadastro=" + dtCadastro + '}';
     }
-
     
     
     

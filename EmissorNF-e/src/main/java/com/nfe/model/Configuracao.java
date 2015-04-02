@@ -1,26 +1,73 @@
 package com.nfe.model;
 
+import com.nfe.model.pk.ConfiguracaoPk;
+import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
 /**
  *
  * @author Rodrigo Monteiro
  */
-public class Configuracao {
+@Entity
+public class Configuracao implements Serializable {
 
     //chave primaria
-    private Integer nr_sequencia;
+    @EmbeddedId
+    private ConfiguracaoPk configuracaoPk;
+
+    @OneToOne
     private Empresa empresa;
 
+    @OneToOne
     private Certificado certificado;
 
     private Integer getAmbiente;
 
-    private String CadeiraCertificados;
-    private String ArquivosXsd;
+    private String cadeiraCertificados;
+    private String arquivosXsd;
     private Integer CUF;
-    private Integer TipoEmissao;
-    private Integer TipoImpressao;
-    private Integer Sincrono;
-    private String LogEmissao;
+    private Integer tipoEmissao;
+    private Integer tipoImpressao;
+    private Integer sincrono;
+    private String logEmissao;
+
+    public Configuracao() {
+    }
+
+    public Configuracao(ConfiguracaoPk configuracaoPk) {
+        this.configuracaoPk = configuracaoPk;
+    }
+
+    public Configuracao(Long idConfiguracao, Long idEmpresa) {
+        this.configuracaoPk = new ConfiguracaoPk(idConfiguracao, idEmpresa);
+    }
+
+    public ConfiguracaoPk getConfiguracaoPk() {
+        return configuracaoPk;
+    }
+
+    public void setConfiguracaoPk(ConfiguracaoPk configuracaoPk) {
+        this.configuracaoPk = configuracaoPk;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Certificado getCertificado() {
+        return certificado;
+    }
+
+    public void setCertificado(Certificado certificado) {
+        this.certificado = certificado;
+    }
 
     public Integer getGetAmbiente() {
         return getAmbiente;
@@ -31,19 +78,19 @@ public class Configuracao {
     }
 
     public String getCadeiraCertificados() {
-        return CadeiraCertificados;
+        return cadeiraCertificados;
     }
 
-    public void setCadeiraCertificados(String CadeiraCertificados) {
-        this.CadeiraCertificados = CadeiraCertificados;
+    public void setCadeiraCertificados(String cadeiraCertificados) {
+        this.cadeiraCertificados = cadeiraCertificados;
     }
 
     public String getArquivosXsd() {
-        return ArquivosXsd;
+        return arquivosXsd;
     }
 
-    public void setArquivosXsd(String ArquivosXsd) {
-        this.ArquivosXsd = ArquivosXsd;
+    public void setArquivosXsd(String arquivosXsd) {
+        this.arquivosXsd = arquivosXsd;
     }
 
     public Integer getCUF() {
@@ -55,35 +102,63 @@ public class Configuracao {
     }
 
     public Integer getTipoEmissao() {
-        return TipoEmissao;
+        return tipoEmissao;
     }
 
-    public void setTipoEmissao(Integer TipoEmissao) {
-        this.TipoEmissao = TipoEmissao;
+    public void setTipoEmissao(Integer tipoEmissao) {
+        this.tipoEmissao = tipoEmissao;
     }
 
     public Integer getTipoImpressao() {
-        return TipoImpressao;
+        return tipoImpressao;
     }
 
-    public void setTipoImpressao(Integer TipoImpressao) {
-        this.TipoImpressao = TipoImpressao;
+    public void setTipoImpressao(Integer tipoImpressao) {
+        this.tipoImpressao = tipoImpressao;
     }
 
     public Integer getSincrono() {
-        return Sincrono;
+        return sincrono;
     }
 
-    public void setSincrono(Integer Sincrono) {
-        this.Sincrono = Sincrono;
+    public void setSincrono(Integer sincrono) {
+        this.sincrono = sincrono;
     }
 
     public String getLogEmissao() {
-        return LogEmissao;
+        return logEmissao;
     }
 
-    public void setLogEmissao(String LogEmissao) {
-        this.LogEmissao = LogEmissao;
+    public void setLogEmissao(String logEmissao) {
+        this.logEmissao = logEmissao;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.configuracaoPk);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Configuracao other = (Configuracao) obj;
+        if (!Objects.equals(this.configuracaoPk, other.configuracaoPk)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Configuracao{" + "configuracaoPk=" + configuracaoPk + ", empresa=" + empresa + ", certificado=" + certificado + ", getAmbiente=" + getAmbiente + ", cadeiraCertificados=" + cadeiraCertificados + ", arquivosXsd=" + arquivosXsd + ", CUF=" + CUF + ", tipoEmissao=" + tipoEmissao + ", tipoImpressao=" + tipoImpressao + ", sincrono=" + sincrono + ", logEmissao=" + logEmissao + '}';
+    }
+
+    
 }

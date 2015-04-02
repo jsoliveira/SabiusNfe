@@ -18,7 +18,7 @@ public class ConsultaCadastroControl {
         try {
 
             //grava solicitacao
-            NFRetornoConsultaCadastro retorno = ws.consultaCadastro(cadastro.getCnpj_consultado(), NFUnidadeFederativa.valueOfCodigo(cadastro.getUf()));
+            NFRetornoConsultaCadastro retorno = ws.consultaCadastro(cadastro.getCnpjConsultado(), NFUnidadeFederativa.valueOfCodigo(cadastro.getUf()));
             System.out.println(retorno.getDados().getStatusResposta());
             System.out.println(retorno.getDados().getMotivo());
 

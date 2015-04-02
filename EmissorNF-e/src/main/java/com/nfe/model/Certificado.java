@@ -1,28 +1,57 @@
 package com.nfe.model;
 
+import com.nfe.model.pk.CertificadoPk;
+import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 /**
  *
  * @author Rodrigo Monteiro
  */
-public class Certificado {
+@Entity
+public class Certificado implements Serializable {
 
-    //chave primaria
-    private Integer cd_certificado;
+   
+    
+    @EmbeddedId
+    private CertificadoPk certificadoPk;
+
+    @ManyToOne
     private Empresa emp;
 
-    private String ds_certificado;
-    private String caminho_certif;
-    private String TipoCertificado;
-    private String CertificadoSenha;
-    private Integer sslPort;
-    private String KeyStore;
+    private String dsCertificado;
 
-    public Integer getCd_certificado() {
-        return cd_certificado;
+    private String caminhoCertif;
+
+    private String tipoCertificado;
+
+    private String certificadoSenha;
+
+    private Integer sslPort;
+
+    private String keyStore;
+
+    public Certificado() {
     }
 
-    public void setCd_certificado(Integer cd_certificado) {
-        this.cd_certificado = cd_certificado;
+    public Certificado(CertificadoPk certificadoPk) {
+        this.certificadoPk = certificadoPk;
+    }
+    
+    public Certificado(Long idCertificado,Long idEmpresa) {
+        this.certificadoPk = new CertificadoPk(idCertificado, idEmpresa);
+    }
+
+    public CertificadoPk getCertificadoPk() {
+        return certificadoPk;
+    }
+
+    public void setCertificadoPk(CertificadoPk certificadoPk) {
+        this.certificadoPk = certificadoPk;
     }
 
     public Empresa getEmp() {
@@ -33,36 +62,36 @@ public class Certificado {
         this.emp = emp;
     }
 
-    public String getDs_certificado() {
-        return ds_certificado;
+    public String getDsCertificado() {
+        return dsCertificado;
     }
 
-    public void setDs_certificado(String ds_certificado) {
-        this.ds_certificado = ds_certificado;
+    public void setDsCertificado(String dsCertificado) {
+        this.dsCertificado = dsCertificado;
     }
 
-    public String getCaminho_certif() {
-        return caminho_certif;
+    public String getCaminhoCertif() {
+        return caminhoCertif;
     }
 
-    public void setCaminho_certif(String caminho_certif) {
-        this.caminho_certif = caminho_certif;
+    public void setCaminhoCertif(String caminhoCertif) {
+        this.caminhoCertif = caminhoCertif;
     }
 
     public String getTipoCertificado() {
-        return TipoCertificado;
+        return tipoCertificado;
     }
 
-    public void setTipoCertificado(String TipoCertificado) {
-        this.TipoCertificado = TipoCertificado;
+    public void setTipoCertificado(String tipoCertificado) {
+        this.tipoCertificado = tipoCertificado;
     }
 
     public String getCertificadoSenha() {
-        return CertificadoSenha;
+        return certificadoSenha;
     }
 
-    public void setCertificadoSenha(String CertificadoSenha) {
-        this.CertificadoSenha = CertificadoSenha;
+    public void setCertificadoSenha(String certificadoSenha) {
+        this.certificadoSenha = certificadoSenha;
     }
 
     public Integer getSslPort() {
@@ -74,11 +103,40 @@ public class Certificado {
     }
 
     public String getKeyStore() {
-        return KeyStore;
+        return keyStore;
     }
 
-    public void setKeyStore(String KeyStore) {
-        this.KeyStore = KeyStore;
+    public void setKeyStore(String keyStore) {
+        this.keyStore = keyStore;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.certificadoPk);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Certificado other = (Certificado) obj;
+        if (!Objects.equals(this.certificadoPk, other.certificadoPk)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Certificado{" + "certificadoPk=" + certificadoPk + ", emp=" + emp + ", dsCertificado=" + dsCertificado + ", caminhoCertif=" + caminhoCertif + ", tipoCertificado=" + tipoCertificado + ", certificadoSenha=" + certificadoSenha + ", sslPort=" + sslPort + ", keyStore=" + keyStore + '}';
+    }
+    
+    
+    
 }

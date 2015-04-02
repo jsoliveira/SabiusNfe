@@ -1,39 +1,67 @@
 package com.nfe.model;
 
+import com.nfe.model.pk.ConsultaCadastroPk;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 
 /**
  *
  * @author Rodrigo Monteiro
  */
-public class ConsultaCadastro {
 
-    //chave primaria
-    private Integer nr_seq_consulta;
+@Entity
+public class ConsultaCadastro implements Serializable{
+
+    @EmbeddedId
+    private ConsultaCadastroPk consultaCadastroPk;
+    
     private Empresa empresa;
 
     private Integer retornoStatus;
 
     private String uf;
-    private String cnpj_consultado;
+    
+    private String cnpjConsultado;
 
     //retorno 
-    private String Retversao;
-    private String RetversaoAplicacao;
-    private String Retmotivo;
-    private String RetinscricaoEstadual;
-    private String Retcnpj;
-    private String Retcpf;
-    private String RetdataHoraProcessamento;
-    private String RetufAutorizadora;
-    private List<NFRetornoSituacaoCadastral> RetsituacaoCadastral;
+    private String retversao;
+    
+    private String retversaoAplicacao;
+    
+    private String retmotivo;
+    
+    private String retinscricaoEstadual;
+    
+    private String retcnpj;
+    
+    private String retcpf;
+    
+    private String retdataHoraProcessamento;
+    
+    private String retufAutorizadora;
+    
+    private List<NFRetornoSituacaoCadastral> retsituacaoCadastral;
 
-    public Integer getNr_seq_consulta() {
-        return nr_seq_consulta;
+    public ConsultaCadastro() {
     }
 
-    public void setNr_seq_consulta(Integer nr_seq_consulta) {
-        this.nr_seq_consulta = nr_seq_consulta;
+    public ConsultaCadastro(ConsultaCadastroPk consultaCadastroPk) {
+        this.consultaCadastroPk = consultaCadastroPk;
+    }
+
+    public ConsultaCadastro(Long nrSeqCadastro, Long idEmpresa) {
+        this.consultaCadastroPk = new ConsultaCadastroPk(Long.MIN_VALUE, Long.MIN_VALUE);
+    }
+
+    public ConsultaCadastroPk getConsultaCadastroPk() {
+        return consultaCadastroPk;
+    }
+
+    public void setConsultaCadastroPk(ConsultaCadastroPk consultaCadastroPk) {
+        this.consultaCadastroPk = consultaCadastroPk;
     }
 
     public Empresa getEmpresa() {
@@ -60,84 +88,112 @@ public class ConsultaCadastro {
         this.uf = uf;
     }
 
-    public String getCnpj_consultado() {
-        return cnpj_consultado;
+    public String getCnpjConsultado() {
+        return cnpjConsultado;
     }
 
-    public void setCnpj_consultado(String cnpj_consultado) {
-        this.cnpj_consultado = cnpj_consultado;
+    public void setCnpjConsultado(String cnpjConsultado) {
+        this.cnpjConsultado = cnpjConsultado;
     }
 
     public String getRetversao() {
-        return Retversao;
+        return retversao;
     }
 
-    public void setRetversao(String Retversao) {
-        this.Retversao = Retversao;
+    public void setRetversao(String retversao) {
+        this.retversao = retversao;
     }
 
     public String getRetversaoAplicacao() {
-        return RetversaoAplicacao;
+        return retversaoAplicacao;
     }
 
-    public void setRetversaoAplicacao(String RetversaoAplicacao) {
-        this.RetversaoAplicacao = RetversaoAplicacao;
+    public void setRetversaoAplicacao(String retversaoAplicacao) {
+        this.retversaoAplicacao = retversaoAplicacao;
     }
 
     public String getRetmotivo() {
-        return Retmotivo;
+        return retmotivo;
     }
 
-    public void setRetmotivo(String Retmotivo) {
-        this.Retmotivo = Retmotivo;
+    public void setRetmotivo(String retmotivo) {
+        this.retmotivo = retmotivo;
     }
 
     public String getRetinscricaoEstadual() {
-        return RetinscricaoEstadual;
+        return retinscricaoEstadual;
     }
 
-    public void setRetinscricaoEstadual(String RetinscricaoEstadual) {
-        this.RetinscricaoEstadual = RetinscricaoEstadual;
+    public void setRetinscricaoEstadual(String retinscricaoEstadual) {
+        this.retinscricaoEstadual = retinscricaoEstadual;
     }
 
     public String getRetcnpj() {
-        return Retcnpj;
+        return retcnpj;
     }
 
-    public void setRetcnpj(String Retcnpj) {
-        this.Retcnpj = Retcnpj;
+    public void setRetcnpj(String retcnpj) {
+        this.retcnpj = retcnpj;
     }
 
     public String getRetcpf() {
-        return Retcpf;
+        return retcpf;
     }
 
-    public void setRetcpf(String Retcpf) {
-        this.Retcpf = Retcpf;
+    public void setRetcpf(String retcpf) {
+        this.retcpf = retcpf;
     }
 
     public String getRetdataHoraProcessamento() {
-        return RetdataHoraProcessamento;
+        return retdataHoraProcessamento;
     }
 
-    public void setRetdataHoraProcessamento(String RetdataHoraProcessamento) {
-        this.RetdataHoraProcessamento = RetdataHoraProcessamento;
+    public void setRetdataHoraProcessamento(String retdataHoraProcessamento) {
+        this.retdataHoraProcessamento = retdataHoraProcessamento;
     }
 
     public String getRetufAutorizadora() {
-        return RetufAutorizadora;
+        return retufAutorizadora;
     }
 
-    public void setRetufAutorizadora(String RetufAutorizadora) {
-        this.RetufAutorizadora = RetufAutorizadora;
+    public void setRetufAutorizadora(String retufAutorizadora) {
+        this.retufAutorizadora = retufAutorizadora;
     }
 
     public List<NFRetornoSituacaoCadastral> getRetsituacaoCadastral() {
-        return RetsituacaoCadastral;
+        return retsituacaoCadastral;
     }
 
-    public void setRetsituacaoCadastral(List<NFRetornoSituacaoCadastral> RetsituacaoCadastral) {
-        this.RetsituacaoCadastral = RetsituacaoCadastral;
+    public void setRetsituacaoCadastral(List<NFRetornoSituacaoCadastral> retsituacaoCadastral) {
+        this.retsituacaoCadastral = retsituacaoCadastral;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.consultaCadastroPk);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ConsultaCadastro other = (ConsultaCadastro) obj;
+        if (!Objects.equals(this.consultaCadastroPk, other.consultaCadastroPk)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ConsultaCadastro{" + "consultaCadastroPk=" + consultaCadastroPk + ", empresa=" + empresa + ", retornoStatus=" + retornoStatus + ", uf=" + uf + ", cnpjConsultado=" + cnpjConsultado + ", retversao=" + retversao + ", retversaoAplicacao=" + retversaoAplicacao + ", retmotivo=" + retmotivo + ", retinscricaoEstadual=" + retinscricaoEstadual + ", retcnpj=" + retcnpj + ", retcpf=" + retcpf + ", retdataHoraProcessamento=" + retdataHoraProcessamento + ", retufAutorizadora=" + retufAutorizadora + ", retsituacaoCadastral=" + retsituacaoCadastral + '}';
+    }
+
+        
 }
